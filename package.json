@@ -1,0 +1,42 @@
+{
+  "_from": "nuxt-gustave@0.0.4",
+  "_id": "nuxt-gustave@0.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-AhBya2mJaYkeouPCT0Q4uqm+R83M/1MmIELxmmqevk5jIMZEwvg77MEbiNf44bkjzh9k3/s3XtZy3KOLIHWmlQ==",
+  "_location": "/nuxt-gustave",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "nuxt-gustave@0.0.4",
+    "name": "nuxt-gustave",
+    "escapedName": "nuxt-gustave",
+    "rawSpec": "0.0.4",
+    "saveSpec": null,
+    "fetchSpec": "0.0.4"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/nuxt-gustave/-/nuxt-gustave-0.0.4.tgz",
+  "_shasum": "6c73e07c8b291b68c24471989cb54a6e0150f2f9",
+  "_spec": "nuxt-gustave@0.0.4",
+  "_where": "/Applications/MAMP/htdocs/PRODUCTION/popcorn-nantes",
+  "author": "",
+  "bin": {
+    "gustave": "bin/gustave.js"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "markdown-it": "^8.4.2",
+    "slug": "^0.9.2",
+    "yaml-front-matter": "^4.0.0"
+  },
+  "deprecated": false,
+  "description": "json generator from markdown files",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "nuxt-gustave",
+  "version": "0.0.4"
+}
