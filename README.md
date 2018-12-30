@@ -1,6 +1,6 @@
 # Gustave
 
-Gustave transform markdown files to JSON files.
+[WIP] a nuxt module to generate spicy static sites from markdown files or any other sources.
 
 `nuxt.config.js`:
 
