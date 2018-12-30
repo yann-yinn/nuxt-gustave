@@ -8,11 +8,10 @@ Gustave transform markdown files to JSON files.
 module.exports = {
   // ...
   gustave: {
-    jsonDirectory: '~/static/api',
-    compilers: [
+    importers: [
       // built-in compiler
       {
-        file: 'modules/gustave/compilers/markdown.js',
+        file: 'node_modules/nuxt-gustave/importers/markdown.js',
         options: {
           directory: 'content/pages',
           outputFile: 'pages.json',
@@ -21,9 +20,9 @@ module.exports = {
           }
         }
       },
-      // custom compiler
+      // custom importers
       {
-        file: '~/compilers/pages.js',
+        file: '~/importers/pages.js',
         options: {}
       }
     ]
@@ -31,12 +30,17 @@ module.exports = {
 }
 ```
 
-custom compiler `compilers/pages.js`:
+custom compiler `importers/pages.js`:
 
 ```js
-module.exports.compile = () => {
-  const entities = parseMarkdownDirectory('content/pages')
-  saveAsJson('static/api/pages.json', entities)
-  return { routes: entities.map(e => `/page/${e.slug}`) }
+const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
+const { saveToJsonDir } = require('nuxt-gustave/lib/helpers')
+
+exports.importer = () => {
+  const result = parseMarkdownDirectory('content/pages')
+  saveToJsonDir('pages.json', result)
+  return {
+    routes: result.data.map(node => `/page/${node.data.$slug}`)
+  }
 }
 ```
