@@ -1,16 +1,15 @@
 const { runImporters } = require('./lib/helpers')
 
 module.exports = function Gustave() {
-  this.nuxt.hook('build:before', (nuxt, buildOptions) => {
+  this.nuxt.hook('build:before', () => {
     const routes = runGustave()
     this.options.generate.routes = [...routes, ...this.options.generate.routes]
   })
 }
 
-function runGustave(nuxtConfig) {
+function runGustave() {
   console.log('ℹ Launching gustave importers ')
   const routes = runImporters()
-  console.log('✔ gustave importers run successfully')
   return routes
 }
 
