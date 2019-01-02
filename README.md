@@ -14,7 +14,7 @@ npm install nuxt-gustave --save-dev
 
 #### Configure Gustave importers
 
-Then configure nuxt.config.file to use Gustave module and tell him to compile to JSON our `content/posts` directory:
+Configure `nuxt.config.js` file to use Gustave module and tell him to compile to JSON our `content/posts` directory:
 
 ```js
 module.exports = {
