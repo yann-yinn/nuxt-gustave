@@ -97,7 +97,7 @@ Note that Gustave added two useful variables :
 
 #### Displaying our posts
 
-Create a component to list all posts : `pages/posts/index.vue`
+Display all posts : `pages/posts/index.vue`
 
 ```html
 <template>
@@ -123,7 +123,7 @@ export default {
 </script>
 ```
 
-Create a component to display a single post : `pages/posts/_slug.vue`
+Display a single post : `pages/posts/_slug.vue`
 
 ```html
 <template>
