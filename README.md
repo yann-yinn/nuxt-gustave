@@ -43,7 +43,7 @@ module.exports = {
 
 #### Create our posts in yaml
 
-Create a `content/posts` directory and two example posts
+In `content/posts` directory, create two posts. Their filenames will be used to create their urls.
 
 First post:
 
@@ -55,6 +55,8 @@ date: 2019-01-02
 
 Hello there, this is my first blog post with Gustave.
 ```
+
+Second post
 
 ```markdown
 ---
