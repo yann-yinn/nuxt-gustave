@@ -149,7 +149,7 @@ export default {
 
 ## Custom importer
 
-Gustave has zero abstractions : you can write your own importers, where your are free to fetch data from where you want, and store it the way you want. An importer is just a function that is fetching some stuff and return a list of routes to Nuxt.
+Gustave has zero abstractions : you can write your own importers, where your are free to fetch data from where you want, and store it the way you want. An importer is just a function that is fetching some stuff and return a list of routes that Nuxt need to generate with `npm run generate`.
 
 Create your own importer is very simple and alltows you to create the JSON you need. Here is a very simple example with a custom yaml importer:
 
