@@ -99,7 +99,7 @@ Note that Gustave added two useful variables :
 
 Create a component to list all posts : `pages/posts/index.vue`
 
-```js
+```html
 <template>
   <div>
     <div v-for="post in posts" :key="post.$slug_from_filename">
@@ -125,7 +125,7 @@ export default {
 
 Create a component to display a single post : `pages/posts/_slug.vue`
 
-```js
+```html
 <template>
   <div>
     <h1>{{post.title}}</h1>
@@ -134,16 +134,16 @@ Create a component to display a single post : `pages/posts/_slug.vue`
 </template>
 
 <script>
-import posts from 'static/api/posts.json'
-export default {
-  computed: {
-    post() {
-      return posts.find(
-        post => post.$slug_from_filename === this.$route.params.slug
-      )
+  import posts from 'static/api/posts.json'
+  export default {
+    computed: {
+      post() {
+        return posts.find(
+          post => post.$slug_from_filename === this.$route.params.slug
+        )
+      }
     }
   }
-}
 </script>
 ```
 
