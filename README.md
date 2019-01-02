@@ -69,7 +69,7 @@ Another post in mardown.
 
 #### Generate JSON
 
-Run "npm run dev": Json files are generating automatically when running command `npm run dev` or `npm run generate`.
+Run `npm run dev`: Json files are generating automatically when running command `npm run dev` or `npm run generate`. You can also use manually `npx nuxt-gustave` command to run the compilers.
 
 You will find a `static/api/posts.json` with this content :
 
