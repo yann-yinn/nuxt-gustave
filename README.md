@@ -78,7 +78,6 @@ You will find a `static/api/posts.json` with this content :
   {
     "title": "second post",
     "date": "2019-01-03T00:00:00.000Z",
-    // $html and $slug_from_filename are added by Gustave
     "$html": "<p>Another post in mardown. This is the future.</p>\n",
     "$slug_from_filename": "another-post"
   },
