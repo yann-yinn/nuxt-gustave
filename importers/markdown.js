@@ -1,5 +1,5 @@
 const { parseMarkdownDirectory } = require('../lib/markdown')
-const { saveToJsonDir } = require('../lib/helpers')
+const { saveToJsonDirectory } = require('../lib/helpers')
 
 module.exports.importer = ({
   markdownDirectory,
@@ -10,6 +10,6 @@ module.exports.importer = ({
   if (!outputFile) {
     outputFile = markdownDirectory.split('/').pop() + '.json'
   }
-  saveToJsonDir(outputFile, resources)
-  return { routes: generateRoutes(resources) }
+  saveToJsonDirectory(outputFile, resources)
+  return generateRoutes(resources)
 }
