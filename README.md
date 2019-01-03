@@ -1,8 +1,10 @@
-# G**u**sta**ve**
-
-⚠️ This is a work in progress
+# G**u**sta**ve** ( ⚠️ This is a work in progress )
 
 **Gustave** is a _Nuxt.js_ module to generate quickly powerful static sites from markdown files. It parses Markdown files to JSON files, that components can easily consume.
+
+## Requirements
+
+- Node v10.12.0 (uses `{ recursive: true }` option from `fs.mkdir`)
 
 ## Installation
 
