@@ -23,9 +23,9 @@ static/api
 
 The core concept of Gustave are _importers_, which are just functions exporting an _importer_ method.
 
-An _importer_ is just a function that fetch data, save it as JSON and return to Nuxt a list of routes that need to be generated as static html files.
+An _importer_ is a function that fetches data from somewhere, save it as JSON and return to Nuxt a list of routes that need to be generated as static html files.
 
-Actually, you can do absolutely what you want inside an _importer_ but we will focus here on makdown files and JSON.
+> Actually, you can do absolutely what you want inside an _importer_, the only requirement is to return a list of routes to generate; but we will focus here on makdown files and JSON.
 
 #### Create a Gustave "importer"
 
@@ -118,7 +118,7 @@ _Gustave_ added some useful variables here :
 
 - `$html` : the mardkown rendered as html
 - `$id` : a uniq id to identify this resource in this collection. We use the filename by default.
-- `$slug` : a slug generated from the filename, that can be used for urls or as ids.
+- `$slug` : a slug generated from the filename, that can be used in urls.
 
 All thoses variables can be overriden inside the importer, before the resources are saved as a JSON file.
 
