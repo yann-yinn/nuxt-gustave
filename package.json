@@ -1,19 +1,49 @@
 {
-  "name": "nuxt-gustave",
+  "_from": "nuxt-gustave",
+  "_id": "nuxt-gustave@0.0.9",
+  "_inBundle": false,
+  "_integrity": "sha512-M4hya0Zknzn+kgsFBaWhTOkU00fja8+lgJTDWo+Z7gKFlkyXBjnQgukBUN/D1Q7nC5cGqPp02iJxsUvrIInbZA==",
+  "_location": "/nuxt-gustave",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "nuxt-gustave",
+    "name": "nuxt-gustave",
+    "escapedName": "nuxt-gustave",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/nuxt-gustave/-/nuxt-gustave-0.0.9.tgz",
+  "_shasum": "0a250aa9e462c279cce14a4681e5e80417c1c449",
+  "_spec": "nuxt-gustave",
+  "_where": "/Applications/MAMP/htdocs/PRODUCTION/yineo-jamstack",
   "bin": {
     "nuxt-gustave": "bin/nuxt-gustave.js"
   },
+  "bugs": {
+    "url": "https://github.com/yann-yinn/nuxt-gustave/issues"
+  },
+  "bundleDependencies": false,
   "dependencies": {
     "markdown-it": "^8.4.2",
     "slug": "^0.9.2",
     "yaml-front-matter": "^4.0.0"
   },
+  "deprecated": false,
   "description": "json generator from markdown files",
+  "homepage": "https://github.com/yann-yinn/nuxt-gustave#readme",
   "license": "ISC",
   "main": "index.js",
+  "name": "nuxt-gustave",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yann-yinn/nuxt-gustave"
+    "url": "git+https://github.com/yann-yinn/nuxt-gustave.git"
   },
   "version": "0.0.9"
 }
