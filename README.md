@@ -160,8 +160,6 @@ const { saveToJsonDirectory } = require('nuxt-gustave/lib/helpers')
 exports.importer = () => {
   const resources = parseMarkdownDirectory('content/persons')
   saveToJsonDirectory('persons.json', resources)
-  return {
-    routes: resources.map(resource => `/person/${resource.$slug_from_filename}`)
-  }
+  return resources.map(resource => `/person/${resource.$slug_from_filename}`)
 }
 ```
