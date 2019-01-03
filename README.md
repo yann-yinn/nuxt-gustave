@@ -155,11 +155,11 @@ Create your own importer is very simple and alltows you to create the JSON you n
 
 ```js
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
-const { saveToJsonDir } = require('nuxt-gustave/lib/helpers')
+const { saveToJsonDirectory } = require('nuxt-gustave/lib/helpers')
 
 exports.importer = () => {
   const resources = parseMarkdownDirectory('content/persons')
-  saveToJsonDir('persons.json', resources)
+  saveToJsonDirectory('persons.json', resources)
   return {
     routes: resources.map(resource => `/person/${resource.$slug_from_filename}`)
   }
