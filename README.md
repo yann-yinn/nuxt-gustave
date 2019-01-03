@@ -44,6 +44,10 @@ exports.importer = () => {
 }
 ```
 
+The routes returned will be automatically injected by Gustave in the `generate.routes` property of `nuxt.config.js`.
+
+See `npm run generate` for more informations : https://nuxtjs.org/api/configuration-generate#routes
+
 #### Register Gustave importers
 
 Now configure `nuxt.config.js` file to use _Gustave_ module and register our `importers/posts.js` importer. Only registered importers will run.
