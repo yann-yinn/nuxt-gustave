@@ -27,7 +27,7 @@ The core concept of Gustave are _importers_.
 
 An _importer_ is a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `[user/1, user/4, user/18]`).
 
-Thoses routes will be automatically added by Gustave in the `generate.routes` property from `nuxt.config.js` , which is used by the `npm run genrate` to generate the static html files (see here for more informations : https://nuxtjs.org/api/configuration-generate#routes )
+> Thoses routes will be automatically added by Gustave in the `generate.routes` property from `nuxt.config.js` , which is used by the `npm run generate` to generate the static html files (see here for more informations : https://nuxtjs.org/api/configuration-generate#routes )
 
 ### Creating a Gustave "importer"
 
