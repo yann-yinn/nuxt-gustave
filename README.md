@@ -1,6 +1,6 @@
 # G**u**sta**ve** ( ⚠️ Work in progress )
 
-Generate a static site from markdown files in minutes : **Gustave** is _Nuxt.js_ module that convert markdown files to JSON files designed to work with the `npm run generate` command from Nuxt.
+**Gustave** is _Nuxt.js_ module that convert markdown files to JSON files designed to work with the `npm run generate` command from Nuxt.
 
 ## Requirements
 
@@ -29,16 +29,16 @@ The core concept of Gustave are _importers_ : an _importer_ is a function that f
 
 ### Create an "importer"
 
-Let's create an `importers/posts.js` file that will turn mardown files from a `content/posts` directory into a `static/api/posts.json` file:
+Let's create an `importers/posts.js` file that will turn mardown files from a `content/posts` directory into a `static/api/posts.json` file
 
 ```js
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
 const { saveToJsonDirectory } = require('nuxt-gustave/lib/helpers')
 
 exports.importer = () => {
-  const resources = parseMarkdownDirectory('content/posts')
+  const resources = parseMarkdownDirectory('posts')
   saveToJsonDirectory('posts.json', resources)
-  return resources.map(resource => `/posts/${resource.$slug}`)
+  return resources.map(resource => `/posts/${resource.$slug}`) //
 }
 ```
 
@@ -189,7 +189,7 @@ exports.importer = () => {
     html: false,
     linkify: false
   })
-  const resources = parseMarkdownDirectory('content/posts', { markdownIt })
+  const resources = parseMarkdownDirectory('posts', { markdownIt })
   saveToJsonDirectory('posts.json', resources)
   return resources.map(resource => `/blog/${resource.$slug}`)
 }

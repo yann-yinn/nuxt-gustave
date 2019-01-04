@@ -4,6 +4,7 @@
     "nuxt-gustave": "bin/nuxt-gustave.js"
   },
   "dependencies": {
+    "chokidar": "^2.0.4",
     "markdown-it": "^8.4.2",
     "slug": "^0.9.2",
     "yaml-front-matter": "^4.0.0"
