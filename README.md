@@ -1,6 +1,6 @@
 # G**u**sta**ve** ( ⚠️ Work in progress )
 
-**Gustave** is a _Nuxt.js_ module to build static sites converting markdown files to JSON files. It is designed to work with the fantastic `npm run generate` command from Nuxt.
+Generate a static site from your markdown files in minutes : **Gustave** is _Nuxt.js_ module that convert your markdown files to JSON files. It is designed to work with the fantastic `npm run generate` command from Nuxt.
 
 ## Requirements
 
@@ -23,15 +23,13 @@ static/api
 
 ## Getting started
 
-The core concept of Gustave are _importers_.
+The core concept of Gustave are _importers_ : an _importer_ is a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `[user/1, user/4, user/18]`).
 
-An _importer_ is a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `[user/1, user/4, user/18]`).
-
-> Thoses routes will be automatically added by Gustave in the `generate.routes` property from `nuxt.config.js` , which is used by the `npm run generate` to generate the static html files (see here for more informations : https://nuxtjs.org/api/configuration-generate#routes )
+> Thoses routes will then automatically be used by the `npm run generate` command to generate the static html files (see here for more informations : https://nuxtjs.org/api/configuration-generate#routes )
 
 ### Creating a Gustave "importer"
 
-Create an `importers/posts.js` file. It will turn a `content/posts` directory into a `static/api/posts.json` file:
+Create an `importers/posts.js` file, that will turn mardown files from a `content/posts` directory into a `static/api/posts.json` file:
 
 ```js
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
@@ -40,7 +38,7 @@ const { saveToJsonDirectory } = require('nuxt-gustave/lib/helpers')
 // you MUST exports your function in the "importer" key.
 exports.importer = () => {
   const resources = parseMarkdownDirectory('content/posts')
-  saveToJsonDirectory('posts.json', resources) // will be saved in `static/api/posts.json`
+  saveToJsonDirectory('posts.json', resources)
   return resources.map(resource => `/posts/${resource.$slug}`)
 }
 ```
@@ -125,7 +123,7 @@ All thoses variables can be overriden inside the importer, before the resources 
 
 #### Displaying our posts
 
-Actualy, Gustave JOBS is done here. You now have `posts.json` file that you can use from your components. Below are a simple example of how it could be done, but from this point; it's really up to you.
+You now have a `posts.json` file that you can use from your components. Below are a simple example of how it could be done, but from this point; it's really up to you.
 
 Display all posts : 📝 **pages/posts/index.vue**
 
@@ -177,4 +175,23 @@ Display a single post : **pages/posts/\_slug.vue**
     }
   }
 </script>
+```
+
+## Customize markdown interpreter options
+
+Gustave is using Markdown-it. We can inject our own markdownIt instance to `parseMarkdownDirectory` function to configure it exactly the way we need.
+
+```js
+const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
+const { saveToJsonDirectory } = require('nuxt-gustave/lib/helpers')
+
+exports.importer = () => {
+  const markdownIt = require('markdown-it')({
+    html: false,
+    linkify: false
+  })
+  const resources = parseMarkdownDirectory('content/posts', { markdownIt })
+  saveToJsonDirectory('posts.json', resources)
+  return resources.map(resource => `/blog/${resource.$slug}`)
+}
 ```
