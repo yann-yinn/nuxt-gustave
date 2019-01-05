@@ -184,6 +184,8 @@ Display a single post : **pages/posts/\_slug.vue**
 
 ## Customize markdown interpreter options
 
+### Custom mardown instance
+
 Gustave is using Markdown-it to render markdown, with a default instance. We can pass our own markdownIt instance to get the full control about markdownIt configuration :
 
 ```js
@@ -206,6 +208,20 @@ module.exports = {
       })
       return markdownIt
     }
+    // ...
+  }
+}
+```
+
+### syntaxic coloration
+
+code syntaxic coloration can be enable automatically with `highlight` options (this will add css and js from 'highlight.js' package) :
+
+```js
+module.exports = {
+  // ...
+  gustave: {
+    highlight: true
     // ...
   }
 }

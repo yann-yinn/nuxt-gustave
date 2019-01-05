@@ -1,14 +1,12 @@
-const { runImporters, getConfig } = require('nuxt-gustave/lib/gustave')
+const { runImporters, getGustaveConfig } = require('nuxt-gustave/lib/gustave')
 
 module.exports = function Gustave() {
   let isGenerating = false
-  const config = getConfig()
+  const config = getGustaveConfig()
 
-  // add css for highlight.js by default. can be disabed in config
-  // if we are not using highlight
-  if (config.highlightCSS) {
+  if (config.highlight) {
     this.options.css.push(
-      `node_modules/highlight.js/styles/${config.highlightCSSTheme}.css`
+      `node_modules/highlight.js/styles/${config.highlightTheme}.css`
     )
   }
 
