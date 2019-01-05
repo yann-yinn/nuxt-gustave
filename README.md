@@ -1,4 +1,4 @@
-# G**u**sta**ve** ( ⚠️ Work in progress )
+# GUSTAVE ( ⚠️ Work in progress )
 
 **Gustave** is _Nuxt.js_ module that convert markdown files to JSON files designed to work with the `npm run generate` command from Nuxt.
 
@@ -184,19 +184,29 @@ Display a single post : **pages/posts/\_slug.vue**
 
 ## Customize markdown interpreter options
 
-Gustave is using Markdown-it. We can inject our own markdownIt instance to `parseMarkdownDirectory` function to configure it exactly the way we need.
+Gustave is using Markdown-it to render markdown, with a default instance. We can pass our own markdownIt instance to get the full control about markdownIt configuration :
 
 ```js
-const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
-const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
-
-exports.importer = () => {
-  const markdownIt = require('markdown-it')({
-    html: false,
-    linkify: false
-  })
-  const resources = parseMarkdownDirectory('posts', { markdownIt })
-  saveToJsonDirectory('posts.json', resources)
-  return resources.map(resource => `/blog/${resource.$slug}`)
+module.exports = {
+  // ...
+  gustave: {
+    markdownIt() {
+      const hljs = require('highlight.js') // https://highlightjs.org/
+      const markdownIt = require('markdown-it')({
+        html: false,
+        linkify: false,
+        highlight: function(str, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            try {
+              return hljs.highlight(lang, str).value
+            } catch (__) {}
+          }
+          return '' // use external default escaping
+        }
+      })
+      return markdownIt
+    }
+    // ...
+  }
 }
 ```

@@ -1,11 +1,11 @@
-const { runImporters, getConfig } = require('./lib/gustave')
+const { runImporters, getConfig } = require('nuxt-gustave/lib/gustave')
 
 module.exports = function Gustave() {
   let isGenerating = false
   const config = getConfig()
 
   // add code syntax highlighting by default
-  if (config.highlight) {
+  if (config['highlight']) {
     this.options.css.push(
       `node_modules/highlight.js/styles/${config.highlightTheme}.css`
     )
