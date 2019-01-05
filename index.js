@@ -1,8 +1,16 @@
 const { runImporters, getGustaveConfig } = require('nuxt-gustave/lib/gustave')
+const chokidar = require('chokidar')
 
 module.exports = function Gustave() {
   let isGenerating = false
   const config = getGustaveConfig()
+  chokidar.watch(config.contentDirectory).on('change', path => {
+    console.log(
+      '\x1b[34m',
+      'Gustave: markdown change detected, launching importers'
+    )
+    runImporters()
+  })
 
   if (config.highlight) {
     this.options.css.push(
