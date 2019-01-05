@@ -1,3 +1,5 @@
 module.exports = {
-  JSONDirectory: 'static/api'
+  JSONDirectory: 'static/api',
+  highlight: true,
+  highlightTheme: 'github'
 }
