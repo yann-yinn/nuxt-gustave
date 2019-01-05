@@ -4,10 +4,11 @@ module.exports = function Gustave() {
   let isGenerating = false
   const config = getConfig()
 
-  // add code syntax highlighting by default
-  if (config['highlight']) {
+  // add css for highlight.js by default. can be disabed in config
+  // if we are not using highlight
+  if (config.highlightCSS) {
     this.options.css.push(
-      `node_modules/highlight.js/styles/${config.highlightTheme}.css`
+      `node_modules/highlight.js/styles/${config.highlightCSSTheme}.css`
     )
   }
 

@@ -1,7 +1,7 @@
 module.exports = {
   JSONDirectory: 'static/api',
-  highlight: true,
-  highlightTheme: 'github',
+  highlightCSS: true, // add highlight.js css by default
+  highlightCSSTheme: 'github',
   markdownIt: null
   /*
   markdownIt: () => {
