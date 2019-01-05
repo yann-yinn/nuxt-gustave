@@ -1,4 +1,4 @@
-const { runImporters } = require('./lib/helpers')
+const { runImporters } = require('./lib/gustave')
 
 module.exports = function Gustave() {
   let isGenerating = false

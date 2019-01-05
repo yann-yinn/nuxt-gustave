@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('nuxt-gustave/lib/helpers').runImporters()
+require('nuxt-gustave/lib/gustave').runImporters()

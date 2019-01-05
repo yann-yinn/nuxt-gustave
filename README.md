@@ -33,7 +33,7 @@ Let's create an `importers/posts.js` file that will turn mardown files from a `c
 
 ```js
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
-const { saveToJsonDirectory } = require('nuxt-gustave/lib/helpers')
+const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
 
 exports.importer = () => {
   const resources = parseMarkdownDirectory('posts')
@@ -182,7 +182,7 @@ Gustave is using Markdown-it. We can inject our own markdownIt instance to `pars
 
 ```js
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
-const { saveToJsonDirectory } = require('nuxt-gustave/lib/helpers')
+const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
 
 exports.importer = () => {
   const markdownIt = require('markdown-it')({
