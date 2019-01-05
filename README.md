@@ -118,7 +118,13 @@ Note that _Gustave_ added some useful variables here :
 - `$id` : a uniq id to identify this resource. Filename is used by default.
 - `$slug` : a slug generated from the filename, that can be used to build pretty urls like "/posts/my-second-post"
 
-All thoses variables can be overriden inside the importer, before the resources are saved as a JSON file.
+All thoses variables can be overriden inside the importer, before the resources are saved as a JSON file or in the markdown front-matter:
+
+```markdown
+---
+$slug: react-wordpress-reactpress-%f0%9f%92%9b
+---
+```
 
 #### Displaying our posts
 
