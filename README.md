@@ -2,7 +2,7 @@
 
 JAMStack is fun, and _Nuxt.js_ is a fantastic static site generator.
 
-**Gustave** is _Nuxt.js_ to generate static sites from markdown files.
+**Gustave** is _Nuxt.js_ module to generate static sites from markdown files.
 
 It converts markdown files to JSON files that can be consumed by components; and is designed to work with the `npm run generate` Nuxt command.
 
