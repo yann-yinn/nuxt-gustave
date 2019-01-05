@@ -7,9 +7,7 @@ module.exports = function Gustave() {
   // add code syntax highlighting by default
   if (config.highlight) {
     this.options.css.push(
-      `node_modules/nuxt-gustave/node_modules/highlight.js/styles/${
-        config.highlightTheme
-      }.css`
+      `node_modules/highlight.js/styles/${config.highlightTheme}.css`
     )
   }
 
