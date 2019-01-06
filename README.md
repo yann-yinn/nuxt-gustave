@@ -1,10 +1,8 @@
 # GUSTAVE ( ⚠️ WIP )
 
-JAMStack is fun, and _Nuxt.js_ is a fantastic static site generator.
+_Nuxt.js_ is an awesome static site generator thanks to its `npm run generate` command.
 
-**Gustave** is _Nuxt.js_ module to generate static sites from markdown files.
-
-It converts markdown files to JSON files that can be consumed by components; and is designed to work with the `npm run generate` Nuxt command.
+**Gustave** is _Nuxt.js_ module to generate quickly static sites from markdown files, converting markdown files to JSON files that can be easily consumed by our components.
 
 ## Requirements
 
@@ -27,13 +25,13 @@ static/api
 
 ## Getting started
 
-The core concept of _Gustave_ are _importers_ : an _importer_ is a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `['user/1', 'user/4', 'user/18']`).
+The core concept of _Gustave_ are _importers_ : an _importer_ is just a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `['user/1', 'user/4', 'user/18']`).
 
 > Gustave will send automatically this routes array to `npm run generate` command, see here for more informations on explicit routes arrays : https://nuxtjs.org/api/configuration-generate#routes .
 
 ### Create an "importer"
 
-Let's create an `importers/posts.js` file that will turn mardown files from a `content/posts` directory into a `static/api/posts.json` file
+Create an `importers/posts.js` file that will turn mardown files from a `content/posts` directory into a `static/api/posts.json` file
 
 ```js
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
@@ -46,7 +44,21 @@ exports.importer = () => {
 }
 ```
 
-**NOTA BENE** : we declared here an array of routes with `/posts/${resource.$slug}` : this mean that we **MUST** have a corresponding `pages/posts/_slug.vue` component to handle thoses routes, to actually generate our html.
+**NOTA BENE** : we declared here an array of routes with `/posts/${resource.$slug}` : this mean that we **MUST** create a corresponding `pages/posts/_slug.vue` component to handle thoses routes, to actually generate our html.
+
+You can also convert a single to markdown :
+
+```js
+const { parseMarkdownFile } = require('nuxt-gustave/lib/markdown')
+const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
+
+exports.importer = () => {
+  parseMarkdownFile('content/settings.md')
+  saveToJsonDirectory('settings.json')
+  // we can return an empty routes array if this resource does not correspond to a html page.
+  return []
+}
+```
 
 ### Register Gustave importers
 
