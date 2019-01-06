@@ -53,9 +53,8 @@ const { parseMarkdownFile } = require('nuxt-gustave/lib/markdown')
 const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
 
 exports.importer = () => {
-  parseMarkdownFile('content/settings.md')
-  saveToJsonDirectory('settings.json')
-  // we can return an empty routes array if this resource does not correspond to a html page.
+  const resource = parseMarkdownFile('content/settings.md')
+  saveToJsonDirectory('settings.json', resource)
   return []
 }
 ```
