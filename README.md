@@ -4,6 +4,14 @@ _Nuxt.js_ is an awesome static site generator thanks to its `npm run generate` c
 
 **Gustave** is _Nuxt.js_ module to generate quickly static sites from markdown files, converting markdown files to JSON files that can be easily consumed by our components.
 
+**Features**
+
+- Convert markdown directory and files to JSON files
+- Frontmatter supports
+- Handle dates in filenames for blogging like Jekyll (e.g: `2018-08-21-apples.md`)
+- Hot-reload when markdown files are changed
+- Can be added to any Nuxt project, zero-assumptions about components or router organization
+
 ## Requirements
 
 - Node v10.12.0 (uses `{ recursive: true }` option from `fs.mkdir`)
