@@ -1,16 +1,17 @@
-# GUSTAVE ( ⚠️ WIP )
+# GUSTAVE
 
 _Nuxt.js_ is an awesome static site generator thanks to its `npm run generate` command.
 
 **Gustave** is _Nuxt.js_ module to generate quickly static sites from markdown files, converting markdown files to JSON files that can be easily consumed by our components.
 
+Gustave makes zero assumptions about your routes or components organization, so it can be added to any Nuxt projects
+
 **Features**
 
 - Convert markdown directory and files to JSON files
-- Frontmatter supports
-- Handle dates in filenames for blogging like Jekyll (e.g: `2018-08-21-apples.md`)
+- Frontmatter support
+- Handle dates in filenames for blogging, like Jekyll (e.g: `2018-08-21-apples.md`)
 - Hot-reload when markdown files are changed
-- Can be added to any Nuxt project, zero-assumptions about components or router organization
 
 ## Requirements
 
@@ -79,10 +80,10 @@ module.exports = {
   // register importers to use:
   gustave: {
     importers: [
-      {
-        file: 'importers/posts.js',
-        options: {} // optionnal arguments for our function
-      }
+      'importers/tags.js',
+      'importers/blocks.js',
+      // you can passe options to an importer with an array:
+      ['importers/posts.js', { hello: 'world' }]
     ]
   }
 }
@@ -242,4 +243,48 @@ module.exports = {
     // ...
   }
 }
+```
+
+### Blogging
+
+You can create filenames starting with date to create easily blog posts, like Jekyll does.
+
+For the following directory structure:
+
+```
+📁 content
+  📁 posts
+    📝 2018-07-02-my-first-post.md
+    📝 2018-08-03-my-last-post.md
+```
+
+You can create the following importer :
+
+```js
+exports.importer = () => {
+  const resources = parseMarkdownDirectory('content/posts', {
+    preset: 'blog'
+  })
+  saveToJsonDirectory('posts.json', resources)
+  return resources.map(resource => `/blog/${resource.$slug}`)
+}
+```
+
+It will create the following JSON in `static/api`, already sorted by date:
+
+```json
+[
+  {
+    "$date": "2018-07-02",
+    "$slug": "my-last-post",
+    "$id": "my-last-post.md",
+    "$html": "<div>html content of my last post</div>"
+  },
+  {
+    "$date": "2018-07-02",
+    "$slug": "my-first-post",
+    "$id": "my-first-post.md",
+    "$html": "<div>html content of my first post</div>"
+  }
+]
 ```
