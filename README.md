@@ -34,19 +34,19 @@ static/api
 
 ## Getting started
 
-The core concept of _Gustave_ are _importers_ : an _importer_ is just a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `['user/1', 'user/4', 'user/18']`).
+The core concept of _Gustave_ are _compilers_ : an _compiler_ is just a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `['user/1', 'user/4', 'user/18']`).
 
 > Gustave will send automatically this routes array to `npm run generate` command, see here for more informations on explicit routes arrays : https://nuxtjs.org/api/configuration-generate#routes .
 
-### Create an "importer"
+### Create an "compiler"
 
-Create an `importers/posts.js` file that will turn mardown files from a `content/posts` directory into a `static/api/posts.json` file
+Create an `compilers/posts.js` file that will turn mardown files from a `content/posts` directory into a `static/api/posts.json` file
 
 ```js
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
 const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
 
-exports.importer = () => {
+exports.compiler = () => {
   const resources = parseMarkdownDirectory('content/posts')
   saveToJsonDirectory('posts.json', resources)
   return resources.map(resource => `/posts/${resource.$slug}`)
@@ -61,29 +61,29 @@ You can also convert a single to markdown :
 const { parseMarkdownFile } = require('nuxt-gustave/lib/markdown')
 const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
 
-exports.importer = () => {
+exports.compiler = () => {
   const resource = parseMarkdownFile('content/settings.md')
   saveToJsonDirectory('settings.json', resource)
   return []
 }
 ```
 
-### Register Gustave importers
+### Register Gustave compilers
 
-Now we have to configure `nuxt.config.js` file to use _Gustave_ module and register our new `importers/posts.js` importer.
+Now we have to configure `nuxt.config.js` file to use _Gustave_ module and register our new `compilers/posts.js` compiler.
 
 ```js
 module.exports = {
   // ...
   // add nuxt-gustave module
   modules: ['nuxt-gustave'],
-  // register importers to use:
+  // register compilers to use:
   gustave: {
-    importers: [
-      'importers/tags.js',
-      'importers/blocks.js',
-      // you can passe options to an importer with an array:
-      ['importers/posts.js', { hello: 'world' }]
+    compilers: [
+      'compilers/tags.js',
+      'compilers/blocks.js',
+      // you can passe options to an compiler with an array:
+      ['compilers/posts.js', { hello: 'world' }]
     ]
   }
 }
@@ -144,7 +144,7 @@ Note that _Gustave_ added some useful variables here :
 - `$id` : a uniq id to identify this resource. Filename is used by default.
 - `$slug` : a slug generated from the filename, that can be used to build pretty urls like "/posts/my-second-post"
 
-All thoses variables can be overriden inside the importer, before the resources are saved as a JSON file or in the markdown front-matter:
+All thoses variables can be overriden inside the compiler, before the resources are saved as a JSON file or in the markdown front-matter:
 
 ```markdown
 ---
@@ -258,10 +258,10 @@ For the following directory structure:
     📝 2018-08-03-my-last-post.md
 ```
 
-You can create the following importer :
+You can create the following compiler :
 
 ```js
-exports.importer = () => {
+exports.compiler = () => {
   const resources = parseMarkdownDirectory('content/posts', {
     preset: 'blog'
   })
