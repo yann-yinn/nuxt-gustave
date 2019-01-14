@@ -1,4 +1,4 @@
-const { runImporters, getGustaveConfig } = require('nuxt-gustave/lib/gustave')
+const { runCompilers, getGustaveConfig } = require('nuxt-gustave/lib/gustave')
 const chokidar = require('chokidar')
 
 module.exports = function Gustave() {
@@ -9,7 +9,7 @@ module.exports = function Gustave() {
       '\x1b[34m',
       'Gustave: markdown change detected, launching importers'
     )
-    runImporters()
+    runCompilers()
   })
 
   if (config.highlight) {
@@ -20,14 +20,14 @@ module.exports = function Gustave() {
 
   this.nuxt.hook('generate:before', () => {
     isGenerating = true
-    const routes = runImporters()
+    const routes = runCompilers()
     this.options.generate.routes = [...routes, ...this.options.generate.routes]
   })
 
   // make sure static JSON files exists before components call them
   this.nuxt.hook('build:before', () => {
     if (!isGenerating) {
-      runImporters()
+      runCompilers()
     }
   })
 }
