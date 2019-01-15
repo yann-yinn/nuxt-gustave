@@ -34,9 +34,9 @@ static/api
 
 ## Getting started
 
-The core concept of _Gustave_ are _compilers_ : an _compiler_ is just a function that fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `['user/1', 'user/4', 'user/18']`).
+The core concept of _Gustave_ are _compilers_ : an _compiler_ is just a function exporting a `compile` method. This `compile` method fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `['user/1', 'user/4', 'user/18']`).
 
-> Gustave will send automatically this routes array to `npm run generate` command, see here for more informations on explicit routes arrays : https://nuxtjs.org/api/configuration-generate#routes .
+> Gustave will then send automatically thoses routes array to `npm run generate` command, see here for more informations on explicit routes arrays : https://nuxtjs.org/api/configuration-generate#routes .
 
 ### Create an "compiler"
 
@@ -46,7 +46,7 @@ Create an `compilers/posts.js` file that will turn mardown files from a `content
 const { parseMarkdownDirectory } = require('nuxt-gustave/lib/markdown')
 const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
 
-exports.compiler = () => {
+exports.compile = () => {
   const resources = parseMarkdownDirectory('content/posts')
   saveToJsonDirectory('posts.json', resources)
   return resources.map(resource => `/posts/${resource.$slug}`)
@@ -61,7 +61,7 @@ You can also convert a single to markdown :
 const { parseMarkdownFile } = require('nuxt-gustave/lib/markdown')
 const { saveToJsonDirectory } = require('nuxt-gustave/lib/gustave')
 
-exports.compiler = () => {
+exports.compile = () => {
   const resource = parseMarkdownFile('content/settings.md')
   saveToJsonDirectory('settings.json', resource)
   return []
@@ -261,7 +261,7 @@ For the following directory structure:
 You can create the following compiler :
 
 ```js
-exports.compiler = () => {
+exports.compile = () => {
   const resources = parseMarkdownDirectory('content/posts', {
     preset: 'blog'
   })
