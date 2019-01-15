@@ -1,17 +1,14 @@
 # GUSTAVE
 
-_Nuxt.js_ is an awesome static site generator thanks to its `npm run generate` command.
+Transform your markdown or yaml files into static sites or blog with `Nuxt.js`. Gustave is designed to work with Nuxt `npm run generate`.
 
-**Gustave** is _Nuxt.js_ module to generate quickly static sites from markdown files, converting markdown files to JSON files that can be easily consumed by our components.
-
-Gustave makes zero assumptions about your routes or components organization, so it can be added to any Nuxt projects
+Gustave transform your markdown or yaml files into _JSON files_ with customizable _compilers_. JSON files can then be easily consumed by your Vue.js components.
 
 **Features**
 
-- Convert markdown directory and files to JSON files
-- Frontmatter support
+- Frontmatter support for markdown files
 - Handle dates in filenames for blogging, like Jekyll (e.g: `2018-08-21-apples.md`)
-- Hot-reload when markdown files are changed
+- Hot-reloading when markdown files are changed
 
 ## Requirements
 
@@ -34,9 +31,9 @@ static/api
 
 ## Getting started
 
-The core concept of _Gustave_ are _compilers_ : an _compiler_ is just a function exporting a `compile` method. This `compile` method fetches data from somewhere, save it as JSON and return to Nuxt an array of routes ( for example : `['user/1', 'user/4', 'user/18']`).
+The core concept of _Gustave_ are _compilers_ : a _compiler_ is just a function exporting a `compile` method. This `compile` method fetches data from somewhere (for example, local mardown files), save it as JSON and return to Nuxt an array of dynamic routes if needed ( for example : `['user/1', 'user/4', 'user/18']`).
 
-> Gustave will then send automatically thoses routes array to `npm run generate` command, see here for more informations on explicit routes arrays : https://nuxtjs.org/api/configuration-generate#routes .
+> Thoses routes array are **required** for dynamic routes by `npm run generate` command, see https://nuxtjs.org/api/configuration-generate#routes . This is not required for static routes like `/contact` or `/about`. If you return them directly from your compiler, you don't need to add them manually to `nuxt.generate.routes` property from `nuxt.config.js`.
 
 ### Create an "compiler"
 
@@ -144,7 +141,7 @@ Note that _Gustave_ added some useful variables here :
 - `$id` : a uniq id to identify this resource. Filename is used by default.
 - `$slug` : a slug generated from the filename, that can be used to build pretty urls like "/posts/my-second-post"
 
-All thoses variables can be overriden inside the compiler, before the resources are saved as a JSON file or in the markdown front-matter:
+All thoses variables can be overriden inside the compiler, before the resources are saved as a JSON file or direclty in the markdown front-matter:
 
 ```markdown
 ---
