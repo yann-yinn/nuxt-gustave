@@ -242,9 +242,9 @@ module.exports = {
 }
 ```
 
-### Blogging
+### Blogging with "jekyllMode"
 
-You can create filenames starting with date to create easily blog posts, like Jekyll does.
+If you have a lot of posts, it is easier to retrieve quickly a post if your filename starts with the date. This what the "jekyllMode" is for :
 
 For the following directory structure:
 
@@ -260,14 +260,14 @@ You can create the following compiler :
 ```js
 exports.compile = () => {
   const resources = parseMarkdownDirectory('content/posts', {
-    preset: 'blog'
+    jekyllMode: true
   })
   saveToJsonDirectory('posts.json', resources)
   return resources.map(resource => `/blog/${resource.$slug}`)
 }
 ```
 
-It will create the following JSON in `static/api`, already sorted by date:
+It will create the following JSON in `static/api`, already sorted by date and with a $date field:
 
 ```json
 [
@@ -285,3 +285,5 @@ It will create the following JSON in `static/api`, already sorted by date:
   }
 ]
 ```
+
+Note that the `$slug` and the `$id`
