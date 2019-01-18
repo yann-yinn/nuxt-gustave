@@ -287,3 +287,11 @@ It will create the following JSON in `static/api`, already sorted by date and wi
 ```
 
 Note that the `$slug` and the `$id`
+
+## Sort by date
+
+if you have a field with an ISO Date, you can use `sortResoucesByDate` function manually to sort resources before saving them as JSON.
+
+```js
+resources = sortResourcesByDate(resources, '$date', 'asc')
+```
