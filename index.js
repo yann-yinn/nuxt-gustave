@@ -1,16 +1,11 @@
 const { runCompilers, getGustaveConfig } = require('./lib/gustave')
-const chokidar = require('chokidar')
+const path = require('path')
 
 module.exports = function Gustave() {
   let isGenerating = false
   const config = getGustaveConfig()
-  chokidar.watch(config.contentDirectory).on('change', path => {
-    console.log(
-      '\x1b[34m',
-      'Gustave: markdown change detected, launching importers'
-    )
-    runCompilers()
-  })
+
+  this.options.watch.push(path.resolve(config.contentDirectory))
 
   if (config.highlight) {
     this.options.css.push(
