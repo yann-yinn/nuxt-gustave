@@ -1,4 +1,4 @@
-const { runCompilers, getGustaveConfig } = require('nuxt-gustave/lib/gustave')
+const { runCompilers, getGustaveConfig } = require('./lib/gustave')
 const chokidar = require('chokidar')
 
 module.exports = function Gustave() {
