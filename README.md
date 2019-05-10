@@ -16,7 +16,7 @@ Gustave transform your markdown or yaml files into _JSON files_ with customizabl
 
 ## Installation
 
-Install Gustave as a **dev dependency** only, as it is needed only to generate the html files from our markdown files.
+Install Gustave as a **dev dependency** only, as it is needed only to generate the JSON files from our markdown files.
 
 ```sh
 npm install nuxt-gustave --save-dev
@@ -160,9 +160,7 @@ Display all posts : 📝 **pages/posts/index.vue**
   <div>
     <div v-for="post in posts" :key="post.$slug">
       <h2>
-        <nuxt-link :to="`/posts/${post.$slug}`"
-          >{{post.title}}</nuxt-link
-        >
+        <nuxt-link :to="`/posts/${post.$slug}`">{{post.title}}</nuxt-link>
       </h2>
       <div v-html="post.$html" />
     </div>
@@ -196,9 +194,7 @@ Display a single post : **pages/posts/\_slug.vue**
   export default {
     computed: {
       post() {
-        return posts.find(
-          post => post.$slug === this.$route.params.slug
-        )
+        return posts.find(post => post.$slug === this.$route.params.slug)
       }
     }
   }
@@ -267,7 +263,7 @@ exports.compile = () => {
 }
 ```
 
-It will create the following JSON in `static/api`, already sorted by date and with a $date field:
+It will create the following JSON in `static/api`, already sorted by date and with a \$date field:
 
 ```json
 [
